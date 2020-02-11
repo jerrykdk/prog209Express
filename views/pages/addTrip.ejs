@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main>
+  <div class="text-primary">
+  <div class="jumbotron">
+      <h2>Your Australian Travel History</h2>
+
+      <%if (dataArray != null) { %>
+       
+        <ul class="list-group">
+            <% for(var i=0; i<dataArray.length; i++) {%>
+              <li class="list-group-item"><%= "A record Num.  " + (i+1) + "         has been added to your history " %></li>
+            <% } %>
+          </ul>
+
+
+        <% } %>
+
+      </br>
+      <div class="form-group">
+          <label for="state">Select a state</label>
+          <select class="form-control" id="state" onchange="main(this)">
+          <option >Western Australia</option>
+          <option >Northern Territory</option>
+          <option >South Australia</option>
+          <option >Queensland</option>
+          <option >New South Wales</option>
+          <option >Victoria</option>
+          <option >Tasmania</option>
+        </select>
+      </div>
+        <!-- <input class="form-control" type="text" id="state" name="state"><br> -->
+
+      <label for="date">Year Visited</label>
+      <input class="form-control" type="text" id="date" name="date"><br>
+      <button class="btn btn-primary  " onclick="updateURL();">Add another state </button>
+
+  </div>
+</div>
+</main>
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+<script type="text/javascript">
+// our menu calls this page URL with no ?id= value,
+// so code needs to check for that
+// when user enters data, I append the data using the required ?id=
+
+  function updateURL() {
+    var myURL = (document.location).toString();
+    var n = myURL.indexOf("?");
+    myURL = myURL.substr(0, n); 
+    document.location = myURL + "?id=" + document.getElementById("state").value + 
+    "&date=" +  document.getElementById("date").value;
+  }
+
+  function main(input)
+{
+    var text = input.options[input.selectedIndex].text; // returns the text ie one / two etc
+    var value = input.value; // returns the value ie 1 / 2 / 3 etc
+  //  alert(text + " " + value);
+}
+</script>
+
+</body>
+</html>

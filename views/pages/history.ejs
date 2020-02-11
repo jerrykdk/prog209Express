@@ -1,0 +1,51 @@
+
+<!-- views/pages/about.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="row">
+       
+    
+        <div class="col-sm-4">        
+            <div class="well">
+                <h3>Well Done!</h3>
+               
+            </div>
+        </div>
+        
+     <div class="col-sm-8">    
+            <div class="jumbotron">
+                
+                <p>Your Current Travel History </p> 
+                
+                 <%if (dataArray != null) { %>
+       
+                    <ul class="list-group">
+                        <% for(var i=0; i<dataArray.length; i++) {%>
+                          <li class="list-group-item"><%= "" + dataArray[i].id + "             in " + dataArray[i].date %></li>
+                        <% } %>
+                      </ul>
+            
+                    <% } %>
+
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    </body>
+    </html>
